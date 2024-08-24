@@ -1,0 +1,6 @@
+[submodule "kube-scheduler-simulator"]
+	path = kube-scheduler-simulator
+	url = https://github.com/kubernetes-sigs/kube-scheduler-simulator
+[submodule "minikube-scheduler"]
+	path = minikube-scheduler
+	url = https://github.com/sanposhiho/mini-kube-scheduler

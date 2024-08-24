@@ -1,0 +1,86 @@
+#!/usr/bin/env python3
+import gym
+import numpy as np
+
+from functools import partial
+import tqdm
+
+from environment.utils import register_env
+from environment.render import plot_reward
+
+from environment.wrapper.NoOpWrapper import NoOpWrapper
+from environment.wrapper.DictObservationWrapper import DictObservationWrapper
+
+from agent.RandomAgent import RandomAgent
+from agent.DefaultK8sAgent import DefaultK8sAgent
+from agent.GreedyAgent import GreedyAgent
+from agent.DeepQAgent import DeepQAgent
+
+from utils.utils import seed_everything
+
+SEED = 2023
+N_EXPERIMENTS = 25
+N_STEPS = 25
+N_NODES = 10
+
+SCHEDULERS = {
+    "default": {"agent": DefaultK8sAgent, "env_wrappers": [NoOpWrapper]},
+    # "random": {"agent": RandomAgent},
+    "greedy": {"agent": GreedyAgent, "agent_args": dict(epsilon=0.9)},
+    # "deepq": {"agent": DeepQAgent, "env_wrappers": [DictObservationWrapper]},
+}
+
+
+def evaluate(scheduler="default"):
+    config = SCHEDULERS[scheduler]
+    env = gym.make(
+        "K8sScheduling-v0",
+        scheduler_name=f"{scheduler}-scheduler",
+        n_nodes=N_NODES,
+        n_pods=N_STEPS,
+    )
+    if config.get("env_wrappers"):
+        for wrapper in config["env_wrappers"]:
+            env = wrapper(env)
+
+    agent_args = {**config.get("args", {})}
+    if scheduler in ["deepq"]:
+        agent_args.update({"env": env, "load": True})
+
+    agent = config["agent"](**agent_args)
+    total_rewards = []
+
+    for exp in tqdm.tqdm(range(N_EXPERIMENTS), total=N_EXPERIMENTS, desc="Episodes"):
+        exp_rewards = []
+        obs = env.reset()
+
+        for step in tqdm.tqdm(range(N_STEPS), total=N_STEPS, desc=f"Episode {exp + 1}"):
+            action = agent.act(obs)
+            obs, reward, terminated, _ = env.step(action)
+            exp_rewards.append(reward)
+            # print("Step {} Action: {}, Reward: {}".format(step + 1, action, reward))
+            if terminated:
+                break
+
+        total_reward = {
+            "Episode": exp + 1,
+            "Steps": step + 1,
+            "Reward": np.sum(exp_rewards),
+            "Agent": f"{scheduler}-scheduler",
+        }
+        # print(
+        #     f"Episode {total_reward['Episode']} finished after {total_reward['Steps']} steps, reward {total_reward['Reward']}"
+        # )
+        total_rewards.append(total_reward)
+    env.close()
+    return total_rewards
+
+
+if __name__ == "__main__":
+    seed_everything(SEED)
+    register_env()
+    total_rewards = []
+    for scheduler in SCHEDULERS:
+        scheduler_rewards = evaluate(scheduler=scheduler)
+        total_rewards.extend(scheduler_rewards)
+    plot_reward(total_rewards)

@@ -1,0 +1,300 @@
+pods: []
+nodes:
+- metadata:
+    name: node-456lx
+    generateName: node-
+    uid: 8088e342-b175-456a-a4ad-945db09e84f6
+    resourceVersion: '7099'
+    creationTimestamp: '2023-05-27T10:48:25Z'
+    managedFields:
+    - manager: simulator
+      operation: Update
+      apiVersion: v1
+      time: '2023-05-27T10:48:25Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:generateName: {}
+  spec: {}
+  status:
+    capacity:
+      cpu: '4'
+      memory: 32Gi
+      pods: '110'
+    allocatable:
+      cpu: '4'
+      memory: 32Gi
+      pods: '110'
+    phase: Running
+    conditions:
+    - type: Ready
+      status: 'True'
+      lastHeartbeatTime: null
+      lastTransitionTime: null
+    daemonEndpoints:
+      kubeletEndpoint:
+        Port: 0
+    nodeInfo:
+      machineID: ''
+      systemUUID: ''
+      bootID: ''
+      kernelVersion: ''
+      osImage: ''
+      containerRuntimeVersion: ''
+      kubeletVersion: ''
+      kubeProxyVersion: ''
+      operatingSystem: ''
+      architecture: ''
+- metadata:
+    name: node-7fzbt
+    generateName: node-
+    uid: 5e81587c-c8be-4ac0-9df4-261a5d73fd00
+    resourceVersion: '7104'
+    creationTimestamp: '2023-05-27T10:48:36Z'
+    managedFields:
+    - manager: simulator
+      operation: Update
+      apiVersion: v1
+      time: '2023-05-27T10:48:36Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:generateName: {}
+  spec: {}
+  status:
+    capacity:
+      cpu: '4'
+      memory: 32Gi
+      pods: '110'
+    allocatable:
+      cpu: '4'
+      memory: 32Gi
+      pods: '110'
+    phase: Running
+    conditions:
+    - type: Ready
+      status: 'True'
+      lastHeartbeatTime: null
+      lastTransitionTime: null
+    daemonEndpoints:
+      kubeletEndpoint:
+        Port: 0
+    nodeInfo:
+      machineID: ''
+      systemUUID: ''
+      bootID: ''
+      kernelVersion: ''
+      osImage: ''
+      containerRuntimeVersion: ''
+      kubeletVersion: ''
+      kubeProxyVersion: ''
+      operatingSystem: ''
+      architecture: ''
+- metadata:
+    name: node-fp2x6
+    generateName: node-
+    uid: 178a86e0-7588-4617-8b0c-3303777328e4
+    resourceVersion: '7102'
+    creationTimestamp: '2023-05-27T10:48:28Z'
+    managedFields:
+    - manager: simulator
+      operation: Update
+      apiVersion: v1
+      time: '2023-05-27T10:48:28Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:generateName: {}
+  spec: {}
+  status:
+    capacity:
+      cpu: '4'
+      memory: 32Gi
+      pods: '110'
+    allocatable:
+      cpu: '4'
+      memory: 32Gi
+      pods: '110'
+    phase: Running
+    conditions:
+    - type: Ready
+      status: 'True'
+      lastHeartbeatTime: null
+      lastTransitionTime: null
+    daemonEndpoints:
+      kubeletEndpoint:
+        Port: 0
+    nodeInfo:
+      machineID: ''
+      systemUUID: ''
+      bootID: ''
+      kernelVersion: ''
+      osImage: ''
+      containerRuntimeVersion: ''
+      kubeletVersion: ''
+      kubeProxyVersion: ''
+      operatingSystem: ''
+      architecture: ''
+- metadata:
+    name: node-gmtwp
+    generateName: node-
+    uid: 451c7e8c-272b-4bbd-9e87-e1b32ee176f6
+    resourceVersion: '7103'
+    creationTimestamp: '2023-05-27T10:48:31Z'
+    managedFields:
+    - manager: simulator
+      operation: Update
+      apiVersion: v1
+      time: '2023-05-27T10:48:31Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:generateName: {}
+  spec: {}
+  status:
+    capacity:
+      cpu: '4'
+      memory: 32Gi
+      pods: '110'
+    allocatable:
+      cpu: '4'
+      memory: 32Gi
+      pods: '110'
+    phase: Running
+    conditions:
+    - type: Ready
+      status: 'True'
+      lastHeartbeatTime: null
+      lastTransitionTime: null
+    daemonEndpoints:
+      kubeletEndpoint:
+        Port: 0
+    nodeInfo:
+      machineID: ''
+      systemUUID: ''
+      bootID: ''
+      kernelVersion: ''
+      osImage: ''
+      containerRuntimeVersion: ''
+      kubeletVersion: ''
+      kubeProxyVersion: ''
+      operatingSystem: ''
+      architecture: ''
+pvs: []
+pvcs: []
+storageClasses: []
+priorityClasses: []
+schedulerConfig:
+  kind: KubeSchedulerConfiguration
+  apiVersion: kubescheduler.config.k8s.io/v1
+  parallelism: 16
+  leaderElection:
+    leaderElect: true
+    leaseDuration: 15s
+    renewDeadline: 10s
+    retryPeriod: 2s
+    resourceLock: leases
+    resourceName: kube-scheduler
+    resourceNamespace: kube-system
+  clientConnection:
+    kubeconfig: ''
+    acceptContentTypes: ''
+    contentType: application/vnd.kubernetes.protobuf
+    qps: 50
+    burst: 100
+  enableProfiling: true
+  enableContentionProfiling: true
+  percentageOfNodesToScore: 0
+  podInitialBackoffSeconds: 1
+  podMaxBackoffSeconds: 10
+  profiles:
+  - schedulerName: default-scheduler
+    plugins:
+      preEnqueue: {}
+      queueSort: {}
+      preFilter: {}
+      filter: {}
+      postFilter: {}
+      preScore: {}
+      score: {}
+      reserve: {}
+      permit: {}
+      preBind: {}
+      bind: {}
+      postBind: {}
+      multiPoint:
+        enabled:
+        - name: PrioritySort
+        - name: NodeUnschedulable
+        - name: NodeName
+        - name: TaintToleration
+          weight: 3
+        - name: NodeAffinity
+          weight: 2
+        - name: NodePorts
+        - name: NodeResourcesFit
+          weight: 1
+        - name: VolumeRestrictions
+        - name: EBSLimits
+        - name: GCEPDLimits
+        - name: NodeVolumeLimits
+        - name: AzureDiskLimits
+        - name: VolumeBinding
+        - name: VolumeZone
+        - name: PodTopologySpread
+          weight: 2
+        - name: InterPodAffinity
+          weight: 2
+        - name: DefaultPreemption
+        - name: NodeResourcesBalancedAllocation
+          weight: 1
+        - name: ImageLocality
+          weight: 1
+        - name: DefaultBinder
+    pluginConfig:
+    - name: DefaultPreemption
+      args:
+        kind: DefaultPreemptionArgs
+        apiVersion: kubescheduler.config.k8s.io/v1
+        minCandidateNodesPercentage: 10
+        minCandidateNodesAbsolute: 100
+    - name: InterPodAffinity
+      args:
+        kind: InterPodAffinityArgs
+        apiVersion: kubescheduler.config.k8s.io/v1
+        hardPodAffinityWeight: 1
+    - name: NodeAffinity
+      args:
+        kind: NodeAffinityArgs
+        apiVersion: kubescheduler.config.k8s.io/v1
+    - name: NodeResourcesBalancedAllocation
+      args:
+        kind: NodeResourcesBalancedAllocationArgs
+        apiVersion: kubescheduler.config.k8s.io/v1
+        resources:
+        - name: cpu
+          weight: 1
+        - name: memory
+          weight: 1
+    - name: NodeResourcesFit
+      args:
+        kind: NodeResourcesFitArgs
+        apiVersion: kubescheduler.config.k8s.io/v1
+        scoringStrategy:
+          type: LeastAllocated
+          resources:
+          - name: cpu
+            weight: 1
+          - name: memory
+            weight: 1
+    - name: PodTopologySpread
+      args:
+        kind: PodTopologySpreadArgs
+        apiVersion: kubescheduler.config.k8s.io/v1
+        defaultingType: System
+    - name: VolumeBinding
+      args:
+        kind: VolumeBindingArgs
+        apiVersion: kubescheduler.config.k8s.io/v1
+        bindTimeoutSeconds: 600
+namespaces: []
